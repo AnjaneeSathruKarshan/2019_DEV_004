@@ -14,3 +14,20 @@ test('check for no input', () => {
   const warn = App.find('#warn');
   expect(warn.text()).toEqual("Please enter year");
 });
+
+test('check for Leap year', () => {
+  const App = Enzyme.mount(<LeapYear />);
+  App.find('input').instance().value = '2000';
+  App.find('button').simulate('click');
+  const output = App.find('#leap');
+  expect(output.text()).toEqual("Hurray! its a Leap year");
+});
+
+test('check for not a Leap year', () => {
+  const App = Enzyme.mount(<LeapYear />);
+  App.find('input').instance().value = '1700';
+  App.find('button').simulate('click');
+  const output = App.find('#notLeap');
+  expect(output.text()).toEqual("Oops! its not a Leap year");
+});
+
