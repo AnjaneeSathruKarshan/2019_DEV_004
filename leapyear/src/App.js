@@ -15,10 +15,11 @@ class LeapYear extends Component {
     let year = this.textInput.current.value;
     if (year === '') {
           this.setState({ output: '1' });
+          return '';
     }else{
         let result = (year % 100 === 0)?(year %400 ===0) :(year % 4 === 0);
         this.setState({ output: result });
-
+        return result;
     }
   }
   render() {

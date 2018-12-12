@@ -10,24 +10,21 @@ Enzyme.configure({ adapter: new Adapter() });
 test('check for no input', () => {
   const App = Enzyme.mount(<LeapYear />);
   App.find('input').instance().value = '';
-  App.find('button').simulate('click');
-  const warn = App.find('#warn');
-  expect(warn.text()).toEqual("Please enter year");
+  let output = App.instance().checkIfLeapYear();
+  expect(output).toEqual('');
 });
 
 test('check for Leap year', () => {
   const App = Enzyme.mount(<LeapYear />);
   App.find('input').instance().value = '2000';
-  App.find('button').simulate('click');
-  const output = App.find('#leap');
-  expect(output.text()).toEqual("Hurray! its a Leap year");
+  let output = App.instance().checkIfLeapYear();
+  expect(output).toEqual(true);
 });
 
 test('check for not a Leap year', () => {
   const App = Enzyme.mount(<LeapYear />);
   App.find('input').instance().value = '1700';
-  App.find('button').simulate('click');
-  const output = App.find('#notLeap');
-  expect(output.text()).toEqual("Oops! its not a Leap year");
+  let output = App.instance().checkIfLeapYear();
+  expect(output).toEqual(false);
 });
 
