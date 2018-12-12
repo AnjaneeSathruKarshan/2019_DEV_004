@@ -28,3 +28,9 @@ test('check for not a Leap year', () => {
   expect(output).toEqual(false);
 });
 
+test('check for on focus message disappears', () => {
+  const App = Enzyme.mount(<LeapYear />);
+  App.find('input').simulate('focus');
+  expect(App.state.output).toEqual(undefined);
+});
+
